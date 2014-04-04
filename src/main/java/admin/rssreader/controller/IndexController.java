@@ -16,4 +16,9 @@ public class IndexController {
 	public String articleManage() {
 		return "articleManage";
 	}
+	
+	@RequestMapping("/sourceManage")
+	public String sourceManage() {
+		return "sourceManage";
+	}
 }

@@ -4,9 +4,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/bootstrap/bootstrap.min.css">
-<script type="text/javascript" src="<%=request.getContextPath()%>/resources/bootstrap/jquery-1.10.2.min.js"></script>
-<script type="text/javascript" src="<%=request.getContextPath()%>/resources/bootstrap/bootstrap.min.js"></script>
+
+<jsp:include page="header/header-bootstrap.jsp"/>
 
 </head>
 <body style="padding:20px;font-size:12px">

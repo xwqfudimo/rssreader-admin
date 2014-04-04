@@ -10,26 +10,42 @@
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
 	<mvc:annotation-driven />
-	<context:component-scan base-package="admin.rssreader.controller"/>
+	<context:component-scan base-package="admin.rssreader.controller" />
 
-	<!-- <mvc:interceptors>
-		<mvc:interceptor>
-			<mvc:mapping path="/**" />
-			<mvc:exclude-mapping path="/resources/**" />
-			<mvc:exclude-mapping path="/login" />
-			<bean class="" />
-		</mvc:interceptor>
-	</mvc:interceptors> -->
+	<!-- <mvc:interceptors> <mvc:interceptor> <mvc:mapping path="/**" /> <mvc:exclude-mapping 
+		path="/resources/**" /> <mvc:exclude-mapping path="/login" /> <bean class="" 
+		/> </mvc:interceptor> </mvc:interceptors> -->
 
 
 	<mvc:resources mapping="/resources/**" location="/resources/" />
-
+	
+	
 	<bean
-		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="viewClass"
-			value="org.springframework.web.servlet.view.JstlView" />
-		<property name="prefix" value="/WEB-INF/views/" />
-		<property name="suffix" value=".jsp" />
+		class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+		<property name="mediaTypes">
+			<map>
+				<entry key="json" value="application/json" />
+			</map>
+		</property>
+		<property name="viewResolvers">
+			<list>
+				<bean class="org.springframework.web.servlet.view.BeanNameViewResolver" />
+				<bean
+					class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+					<property name="prefix" value="/WEB-INF/views/" />
+					<property name="suffix" value=".jsp" />
+				</bean>
+			</list>
+		</property>
+		<property name="defaultViews">
+			<list>
+				<bean
+					class="org.springframework.web.servlet.view.json.MappingJackson2JsonView" />
+			</list>
+		</property>
 	</bean>
 
+	  <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter"/>
+	  <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping"/>
+	  
 </beans>

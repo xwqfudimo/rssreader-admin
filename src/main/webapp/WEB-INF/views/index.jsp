@@ -5,11 +5,9 @@
 <head>
 <meta charset="UTF-8">
 <title>管理主页</title>
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/easyui/themes/default/easyui.css">
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/easyui/themes/icon.css">
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/easyui/demo.css">
-<script type="text/javascript" src="<%=request.getContextPath() %>/resources/easyui/jquery.min.js"></script>
-<script type="text/javascript" src="<%=request.getContextPath() %>/resources/easyui/jquery.easyui.min.js"></script>
+
+<jsp:include page="header/header-easyui.jsp"/>
+
 </head>
 <body class="easyui-layout">
 	<div data-options="region:'north',border:false" style="height:50px;padding:0;margin:0">
@@ -21,7 +19,7 @@
 		<div css="opt" title="RSS管理" data-options="iconCls:'icon-ok'" style="overflow:auto;padding:10px;">
 			<ul>
 					<li onclick="addTab('文章管理','articleManage')"><a href="#">文章管理</a></li>
-					<li onclick="addTab('来源管理','sources')"><a href="#">来源管理</a></li>
+					<li onclick="addTab('来源管理','sourceManage')"><a href="#">来源管理</a></li>
 			</ul>
 		</div>
 		<div css="opt" title="用户管理" data-options="iconCls:'icon-ok'" style="padding:10px;">
