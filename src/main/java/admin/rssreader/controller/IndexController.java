@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping
 public class IndexController {
 	
-	@RequestMapping("/")
+	@RequestMapping({"/", "/index"})
 	public String index() {
 		return "index";
 	}
@@ -20,5 +20,10 @@ public class IndexController {
 	@RequestMapping("/sourceManage")
 	public String sourceManage() {
 		return "sourceManage";
+	}
+	
+	@RequestMapping("/404")
+	public String error404() {
+		return "404";
 	}
 }

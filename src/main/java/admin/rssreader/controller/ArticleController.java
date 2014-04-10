@@ -92,7 +92,7 @@ public class ArticleController extends BaseController {
 //		Map<String, Object> result = new HashMap<String, Object>(1);
 //		result.put("success", true);
 		
-		//TODO springmvc3.2 jquery ajax post提交无法成功回到jquery success()函数
+		//TODO springmvc3.2 jquery1.10.2 ==> jquery ajax post提交无法成功回到jquery success()函数
 
 		return "redirect:/article/" + article.getId() + "/edit";
 	}

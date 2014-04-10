@@ -9,6 +9,8 @@ import javax.ws.rs.client.WebTarget;
 public class BaseResourceImpl {
 	private static String serverAddr;
 	protected static WebTarget target;
+	protected static String username;
+	protected static String password;
 	
 	static {
 		Properties prop = new Properties();
@@ -20,5 +22,10 @@ public class BaseResourceImpl {
 		serverAddr = prop.getProperty("server.address");
 		
 		target = ClientBuilder.newClient().target(serverAddr);
+	}
+	
+	public static void setAuthInfo(String uname, String upwd) {
+		username = uname;
+		password = upwd;
 	}
 }

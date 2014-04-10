@@ -12,7 +12,10 @@
 <body class="easyui-layout">
 	<div data-options="region:'north',border:false" style="height:50px;padding:0;margin:0">
 		<div style="background: url(<%=request.getContextPath() %>/resources/img/header_bg.png) repeat-x;height:35px;color:#fff;font-size:16px;padding-top:15px;padding-left:10px;">
-			RSS管理后台
+			<div>
+				<div style="float:left">RSS管理后台</div>
+				<div style="float:right">当前登录：${loginUser } <a href="logout" style="color:#fff;margin-left:30px;margin-right:30px">安全退出</a></div>
+			</div>
 		</div>
 	</div>
 	<div data-options="region:'west',split:true,title:'菜单'" style="width:180px;"  class="easyui-accordion">

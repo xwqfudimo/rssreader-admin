@@ -6,18 +6,18 @@ import javax.ws.rs.core.MediaType;
 import org.springframework.stereotype.Service;
 
 import admin.rssreader.entity.Article;
-import admin.rssreader.provider.article.ArticleDtoMessageBodyReader;
 import admin.rssreader.provider.article.ArticleMessageBodyReader;
 import admin.rssreader.provider.article.ArticleMessageBodyWriter;
 import admin.rssreader.resource.ArticleResource;
 
+@SuppressWarnings("static-access")
 @Service
 public class ArticleResourceImpl extends BaseResourceImpl implements ArticleResource {
 	
 	@Override
 	public Article getArticle(String id) {
 		Article article = target.path("article/" + id).register(ArticleMessageBodyReader.class)
-				.request(MediaType.APPLICATION_JSON).get(Article.class);
+				.request(MediaType.APPLICATION_JSON).header("username", this.username).header("password", this.password).get(Article.class);
 		
 		return article;
 	}
@@ -25,18 +25,18 @@ public class ArticleResourceImpl extends BaseResourceImpl implements ArticleReso
 	@Override
 	public void addArticle(Article article) {
 		target.path("article").register(ArticleMessageBodyWriter.class)
-				.request().post(Entity.entity(article, MediaType.APPLICATION_JSON)).close();
+				.request().header("username", this.username).header("password", this.password).post(Entity.entity(article, MediaType.APPLICATION_JSON)).close();
 	}
 	
 	@Override
 	public void updateArticle(Article article) {
 		target.path("article").register(ArticleMessageBodyWriter.class)
-				.request().put(Entity.entity(article, MediaType.APPLICATION_JSON)).close();
+				.request().header("username", this.username).header("password", this.password).put(Entity.entity(article, MediaType.APPLICATION_JSON)).close();
 	}
 	
 	@Override
 	public void deleteArticle(String id) {
-		target.path("article/" + id).request().delete().close();;
+		target.path("article/" + id).request().header("username", this.username).header("password", this.password).delete().close();;
 	}
 	
 /*
@@ -61,7 +61,7 @@ public class ArticleResourceImpl extends BaseResourceImpl implements ArticleReso
 	
 	@Override
 	public String getArticlesByPage(String pageIndex, String pageSize, String title) {
-		return target.path("article/" + pageSize + "/" + pageIndex).register(ArticleDtoMessageBodyReader.class)
-		.queryParam("title", title).request(MediaType.APPLICATION_JSON).get(String.class);
+		return target.path("article/" + pageSize + "/" + pageIndex)
+				.queryParam("title", title).request(MediaType.APPLICATION_JSON).header("username", this.username).header("password", this.password).get(String.class);
 	}
 }
